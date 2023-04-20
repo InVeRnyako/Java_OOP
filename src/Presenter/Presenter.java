@@ -37,4 +37,8 @@ public class Presenter {
         service.removePerson(personId);
     }
 
+	public String getPersonInfo(Integer personId) {
+		return service.getPersonInfo(personId);
+	}
+
 }

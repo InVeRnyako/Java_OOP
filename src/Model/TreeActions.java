@@ -18,7 +18,7 @@ public class TreeActions<E extends Person> implements TreeData {
         this.tree = tree;
     }
 
-    public void setPresenter(Presenter presenter){
+    public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
     }
 
@@ -104,9 +104,9 @@ public class TreeActions<E extends Person> implements TreeData {
         return null;
     }
 
-    public Integer findPersonIdByName(String nameToLookFor){
+    public Integer findPersonIdByName(String nameToLookFor) {
         for (E person : tree.getEData())
-            if (person.getName().contains(nameToLookFor))
+            if (person.getName().toLowerCase().contains(nameToLookFor.toLowerCase()))
                 return person.getId();
         return null;
     }
@@ -117,13 +117,13 @@ public class TreeActions<E extends Person> implements TreeData {
         tree.getEData().add(newPerson);
     }
 
-    public void addPerson(Person newPerson){
+    public void addPerson(Person newPerson) {
         if (newPerson == null)
             return;
-        tree.getEData().add((E)newPerson);
+        tree.getEData().add((E) newPerson);
     }
 
-    public Boolean addPersonByText(String fullName, String yearOfBirth, String yearOfDeath){
+    public Boolean addPersonByText(String fullName, String yearOfBirth, String yearOfDeath) {
         System.out.println(fullName);
         if (fullName.equals(""))
             fullName = null;
@@ -137,7 +137,7 @@ public class TreeActions<E extends Person> implements TreeData {
         else
             personToadd.setDeathYear(Year.parse(yearOfDeath));
         addPerson(personToadd);
-        
+
         return true;
     }
 
@@ -150,7 +150,7 @@ public class TreeActions<E extends Person> implements TreeData {
             tree.getParentsData().add(new Parent(kidId, parentId));
     }
 
-    public void loadTestTree(){
+    public void loadTestTree() {
         tree = new Tree<>();
         addPerson(new Person(0, "Михаил Федорович", Year.of(1613), Year.of(1645)));
         addPerson(new Person(1, "Евдокия Стрешнева"));
@@ -175,7 +175,7 @@ public class TreeActions<E extends Person> implements TreeData {
         addParent(9, 4);
     }
 
-    public Integer getFreeId(){
+    public Integer getFreeId() {
         Integer id = 0;
         for (Person person : tree) {
             if (person.getId() != id)
@@ -183,5 +183,13 @@ public class TreeActions<E extends Person> implements TreeData {
             id++;
         }
         return id;
+    }
+
+    public String getPersonInfo(Integer personId) {
+        for (E person : tree.getEData()) {
+            if (person.getId() == personId)
+                return person.toString();
+        }
+        return null;
     }
 }

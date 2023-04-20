@@ -20,6 +20,7 @@ public class RemovePerson extends FindPersonCommand {
     @Override
     public void execute() {
         getConsole().removePerson(personId);
+        getConsole().quit();
     }
 
 }

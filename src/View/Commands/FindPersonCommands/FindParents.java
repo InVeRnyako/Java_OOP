@@ -1,7 +1,6 @@
 package View.Commands.FindPersonCommands;
 
 import View.Console;
-import View.Commands.Command;
 import View.Commands.FindPersonCommand;
 
 public class FindParents extends FindPersonCommand {

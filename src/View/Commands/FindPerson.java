@@ -29,6 +29,7 @@ public class FindPerson  extends Command{
             if (id == null)
                 getConsole().print("Совпадений нет");
             else{
+                getConsole().print(getConsole().getPersonInfo(id));
                 getConsole().findPersonSubmenu(id);
             }
         }

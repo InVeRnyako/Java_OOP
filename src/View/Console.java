@@ -48,6 +48,10 @@ public class Console implements View {
         work = true;
     }
 
+    public String getPersonInfo(Integer personId){
+        return presenter.getPersonInfo(personId);
+    }
+
     @Override
     public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
