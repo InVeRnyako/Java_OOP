@@ -1,6 +1,6 @@
 package Model;
 public interface TreeData {
-    void saveData();
+    String saveFile();
 
-    void readData();
+    String loadFile();
 }

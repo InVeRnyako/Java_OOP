@@ -27,13 +27,14 @@ public class TreeActions<E extends Person> implements TreeData {
     }
 
     @Override
-    public void saveData() {
+    public String saveFile() {
         SaveFile sf = new SaveFile();
-        sf.saveData(this);
+        sf.saveData(tree);
+        return sf.getResult();
     }
 
     @Override
-    public void readData() {
+    public String loadFile() {
         SaveFile sf = new SaveFile();
         Object dataFromFile = sf.readData();
         if (dataFromFile instanceof Tree) {
@@ -42,7 +43,7 @@ public class TreeActions<E extends Person> implements TreeData {
             tree.setParentsData(readTree.getParentsData());
             tree.setEData(readTree.getEData());
         }
-        return;
+        return sf.getResult();
     }
 
     public String showAll() {
@@ -62,10 +63,29 @@ public class TreeActions<E extends Person> implements TreeData {
         return outList;
     }
 
+    public String sortByNameString() {
+        return listToFormatedString(sortByName());
+    }
+
     public List<E> sortByBirthDate() {
         List<E> outList = new ArrayList<E>(tree.getEData());
         outList.sort(new PersonComparatorByBirthDate());
         return outList;
+    }
+
+    public String sortByBirthDateString() {
+        return listToFormatedString(sortByBirthDate());
+    }
+
+    private String listToFormatedString(List<E> list) {
+        StringBuilder out = new StringBuilder();
+        String prefix = "";
+        for (E e : list) {
+            out.append(prefix);
+            out.append(e.toString());
+            prefix = "\n";
+        }
+        return out.toString();
     }
 
     public HashSet<Integer> findAllKidsId(Integer parentId) {
@@ -124,7 +144,6 @@ public class TreeActions<E extends Person> implements TreeData {
     }
 
     public Boolean addPersonByText(String fullName, String yearOfBirth, String yearOfDeath) {
-        System.out.println(fullName);
         if (fullName.equals(""))
             fullName = null;
         E personToadd = (E) new Person(getFreeId(), fullName);
@@ -192,4 +211,36 @@ public class TreeActions<E extends Person> implements TreeData {
         }
         return null;
     }
+
+    public String findParents(Integer personId) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Parent parentKidPair : tree.getParentsData()) {
+            if (personId.equals(parentKidPair.getIdKid())) {
+                stringBuilder.append(getPersonInfo(parentKidPair.getIdParent()));
+                stringBuilder.append(", ");
+            }
+        }
+        if (stringBuilder.length() > 0){
+            stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length() - 1);
+            return stringBuilder.toString();
+        }
+        else
+            return null;
+    }
+
+    public String findKids(Integer personId) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Parent parentKidPair : tree.getParentsData()) {
+            if (personId.equals(parentKidPair.getIdParent())){
+                stringBuilder.append(getPersonInfo(parentKidPair.getIdKid()));
+                stringBuilder.append(", ");
+            }
+        }
+        if (stringBuilder.length()>0){
+            stringBuilder.delete(stringBuilder.length() -2 , stringBuilder.length() -1 );
+            return stringBuilder.toString();
+        }
+        return null;
+    }
+
 }

@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class SaveFile implements Serializable {
     private String saveFileName;
     private String path = System.getProperty("user.dir");
+    private String result;
 
     public SaveFile(String saveName) {
         saveFileName = path.concat("/" + saveName + ".data");
@@ -20,19 +21,24 @@ public class SaveFile implements Serializable {
     public void saveData(Object objectToSave) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(saveFileName))) {
             oos.writeObject(objectToSave);
-            System.out.println("File has been written");
+            result = "Данные успешно сохранены";
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            result = "Ошибка: " + ex.getMessage();
         }
 
+    }
+
+    public String getResult(){
+        return result;
     }
 
     public Object readData() {
         Object importObject = new Tree();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(saveFileName))) {
             importObject = ois.readObject();
+            result = "Данные из файла успешно загружены.";
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            result = "Ошибка считывания файла: " + ex.getMessage();
         }
         return importObject;
     }

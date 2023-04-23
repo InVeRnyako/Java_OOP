@@ -2,7 +2,7 @@ package View.Commands;
 
 import View.Console;
 
-public class FindPerson  extends Command{
+public class FindPerson extends Command {
 
     private String desription = "Найти человека по имени.";
 
@@ -17,24 +17,25 @@ public class FindPerson  extends Command{
 
     @Override
     public void execute() {
-        // Запросить имя
+        Integer id = justId();
+        if (id == null)
+            getConsole().print("Совпадений нет");
+        else {
+            getConsole().print(getConsole().getPersonInfo(id));
+            getConsole().findPersonSubmenu(id);
+        }
+    }
+
+    public Integer justId() {
         getConsole().print("Введите имя:");
         String nameToLookFor = getConsole().read();
+        Integer id = null;
         if (nameToLookFor.equals(""))
             getConsole().fail();
-        else{
-            // Найти человека по имени
-            Integer id = getConsole().findPerson(nameToLookFor);
-            // Перейти в меню человека и передать туда id
-            if (id == null)
-                getConsole().print("Совпадений нет");
-            else{
-                getConsole().print(getConsole().getPersonInfo(id));
-                getConsole().findPersonSubmenu(id);
-            }
+        else {
+            id = getConsole().findPerson(nameToLookFor);
         }
-
-        
+        return id;
     }
-    
+
 }

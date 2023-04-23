@@ -7,8 +7,8 @@ public class FindKids extends FindPersonCommand{
 
     private String desription = "Показать список детей";
 
-    public FindKids(Integer personId, Console console) {
-        super(personId, console);
+    public FindKids(Console console) {
+        super(console);
     }
 
     @Override
@@ -17,9 +17,8 @@ public class FindKids extends FindPersonCommand{
     }
 
     @Override
-    public void execute() {
-        // TODO
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+    public void execute(Integer personId) {
+        getConsole().findKids(personId);
     }
     
 }

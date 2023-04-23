@@ -1,10 +1,11 @@
 package Model.Person;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-public class PersonIterator<E> implements Iterator<E> {
+public class PersonIterator<E> implements Iterator<E>{
     private int index;
     private List<E> personList;
     

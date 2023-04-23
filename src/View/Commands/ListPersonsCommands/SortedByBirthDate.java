@@ -5,21 +5,20 @@ import View.Commands.Command;
 
 public class SortedByBirthDate extends Command {
 
+    private String desription = "Сортировка по дате рождения";
+
     public SortedByBirthDate(Console console) {
         super(console);
-        //TODO Auto-generated constructor stub
     }
 
     @Override
     public String getDescription() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDescription'");
+        return desription;
     }
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        getConsole().showListSortedByBirthDate();
     }
     
 }

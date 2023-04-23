@@ -22,7 +22,7 @@ public class AddPerson extends Command{
         console.print("Введите данные человека. Если данных нет, оставьте пустым");
         console.print("Имя:");
         String fullName = console.read();
-        System.out.println(fullName);
+        console.print(fullName);
         console.print("Дата рождения:");
         String birthDate = console.read();
         console.print("Дата смерти");

@@ -4,12 +4,12 @@ import View.Console;
 import View.Commands.FindPersonCommand;
 
 public class RemovePerson extends FindPersonCommand {
-    private String desription = "Удалить человека из данных";
-    private Integer personId;
 
-    public RemovePerson(Integer personId, Console console) {
-        super(personId, console);
-        this.personId = personId;
+
+    private String desription = "Удалить человека из данных";
+
+    public RemovePerson(Console console) {
+        super(console);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class RemovePerson extends FindPersonCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(Integer personId) {
         getConsole().removePerson(personId);
         getConsole().quit();
     }

@@ -3,12 +3,12 @@ package View.Commands.FindPersonCommands;
 import View.Console;
 import View.Commands.FindPersonCommand;
 
-public class AddParent extends FindPersonCommand{
+public class AddParent extends FindPersonCommand {
 
     private String desription = "Выбрать родителя";
 
-    public AddParent(Integer personId, Console console) {
-        super(personId, console);
+    public AddParent(Console console) {
+        super(console);
     }
 
     @Override
@@ -17,13 +17,9 @@ public class AddParent extends FindPersonCommand{
     }
 
     @Override
-    public void execute() {
-        // (TODO)
-        // найти родителя
-        // добавить родителя и ребенка в список
-        
+    public void execute(Integer personId) {
+        Integer idToLink = getConsole().getFindPerson().justId();
+        if (idToLink != null)
+            getConsole().addPerent(personId, idToLink);
     }
-
-
-    
 }

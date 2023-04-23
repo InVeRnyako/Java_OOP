@@ -7,8 +7,8 @@ public class FindParents extends FindPersonCommand {
 
     private String desription = "Показать список родителей";
 
-    public FindParents(Integer personId, Console console) {
-        super(personId, console);
+    public FindParents(Console console) {
+        super(console);
     }
 
     @Override
@@ -17,9 +17,8 @@ public class FindParents extends FindPersonCommand {
     }
 
     @Override
-    public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+    public void execute(Integer personId) {
+        getConsole().findParents(personId);
     }
 
 }

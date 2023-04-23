@@ -5,21 +5,20 @@ import View.Commands.Command;
 
 public class SortedByName extends Command {
 
+    private String description = "Сортировка по имени";
+
     public SortedByName(Console console) {
         super(console);
-        //TODO Auto-generated constructor stub
     }
 
     @Override
     public String getDescription() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDescription'");
+        return description;
     }
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        getConsole().showListSortedByName();
     }
     
 }

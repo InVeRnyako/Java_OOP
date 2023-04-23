@@ -7,8 +7,8 @@ public class BackToMain extends FindPersonCommand{
 
     private String desription = "Вернуться в главное меню";
 
-    public BackToMain(Integer personId, Console console) {
-        super(personId, console);
+    public BackToMain(Console console) {
+        super(console);
     }
     @Override
     public String getDescription() {
@@ -16,8 +16,7 @@ public class BackToMain extends FindPersonCommand{
     }
 
     @Override
-    public void execute() {
+    public void execute(Integer personId) {
         getConsole().quit();
-        
     }
 }

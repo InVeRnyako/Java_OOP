@@ -2,11 +2,12 @@ package View.Commands;
 
 import View.Console;
 
-public class ListPersons extends Command{
+public class Load extends Command{
 
-    private String desription = "Список людей";
+    private String desription = "Загрузить данные из файла";
 
-    public ListPersons(Console console) {
+
+    public Load(Console console) {
         super(console);
     }
 
@@ -17,8 +18,7 @@ public class ListPersons extends Command{
 
     @Override
     public void execute() {
-        getConsole().listPersonsMenu();
+        getConsole().loadFile();
     }
-
     
 }

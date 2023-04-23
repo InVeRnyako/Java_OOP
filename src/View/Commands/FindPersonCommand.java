@@ -2,14 +2,19 @@ package View.Commands;
 
 import View.Console;
 
-public abstract class FindPersonCommand extends Command{
+public abstract class FindPersonCommand{
 
-    Integer personId;
+    private Console console;
 
-    public FindPersonCommand(Integer personId, Console console) {
-        super(console);
+    public FindPersonCommand(Console console){
+        this.console = console;
     }
 
+    public Console getConsole(){
+        return console;
+    }
 
-    
+    public abstract String getDescription();
+    public abstract void execute(Integer id);
 }
+
