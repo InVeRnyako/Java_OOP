@@ -99,7 +99,7 @@ public class Console implements View {
     }
 
     public void listPersons() {
-        print(presenter.listPersons());
+        printDataIfExists(presenter.listPersons());
     }
 
     public void quit() {
@@ -126,13 +126,20 @@ public class Console implements View {
         presenter.removePerson(personId);
     }
 
+    public void printDataIfExists(String data) {
+        if (data == null || data.isEmpty())
+            print("<Нет данных>");
+        else
+            print(data);
+    }
+
     public void showListSortedByBirthDate() {
-        print(presenter.showListSortedByBirthDate());
+        printDataIfExists(presenter.showListSortedByBirthDate());
         quit();
     }
 
     public void showListSortedByName() {
-        print(presenter.showListSortedByName());
+        printDataIfExists(presenter.showListSortedByName());
         quit();
     }
 
@@ -145,23 +152,13 @@ public class Console implements View {
     }
 
     public void findParents(Integer personId) {
-        if (personId == null)
-            print("ОШИБКА");
         String parents = presenter.findParents(personId);
-        if (parents != null)
-            print(parents);
-        else
-            print("<Нет>");
+        printDataIfExists(parents);
     }
 
     public void findKids(Integer personId) {
-        if (personId == null)
-            print("ОШИБКА");
         String kids = presenter.findKids(personId);
-        if (kids != null)
-            print(kids);
-        else
-            print("<Нет>");
+        printDataIfExists(kids);
     }
 
     public void loadFile() {
